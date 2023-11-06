@@ -3,8 +3,8 @@ import java.util.Scanner;
 import static java.lang.System.exit;
 
 public class Author {
-    final int LenDate = 11;
-    final int Len = 30;
+    static final int LenDate = 11;
+    static final int Len = 30;
     private String name;
     private String date;
     private String country;

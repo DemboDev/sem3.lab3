@@ -3,14 +3,18 @@ import java.util.Scanner;
 import static java.lang.System.exit;
 
 public class Operation {
-    final int Len = 30;
-    final int LenDate = 11;
+    private static int nOperations = 0;
+    public static int getCount() {
+        return nOperations;
+    }
+    static final int Len = 30;
+    static final int LenDate = 11;
     private String move;
     private String date;
     public Book book;
     public Client client;
-    public Operation(){}
-    public Operation(String move, String date, Book book, Client client) {
+    public Operation(){nOperations++;}
+    public Operation(String move, String date, Book book, Client client) {nOperations++;
         setArguments(move, date, book, client);
     }
 

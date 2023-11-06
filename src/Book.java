@@ -3,11 +3,15 @@ import java.util.Scanner;
 import static java.lang.System.exit;
 
 public class Book {
+    private static int nBooks = 0;
+    public static int getCount() {
+        return nBooks;
+    }
     private int year;
     private String name;
     public Author author;
-    public Book(){};
-    public Book(Author author) {
+    public Book(){nBooks++;};
+    public Book(Author author) {nBooks++;
         this.name = "Захар Беляков";
         this.year = 2000;
         this.author = author;
@@ -23,7 +27,7 @@ public class Book {
             this.year = year;
         }
     }
-    public Book(String name, Author author, int year) {
+    public Book(String name, Author author, int year) {nBooks++;
         setArguments(name, author, year);
     }
 

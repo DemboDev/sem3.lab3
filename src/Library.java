@@ -48,20 +48,20 @@ public class Library {
         this.clients.add(client);
     }
 
-    public void AddOperationToLibrary(Operation operation){
+    public void AddOperationToLibrary(Operation operation1){
         this.NumOperations += 1;
-        this.operations.add(operation);
+        this.operations.add(operation1);
     }
     void PrintLibrary() {
-        System.out.println("\nБиблиотека:\n\nПривязанные книги : ");
+        System.out.println("\nБиблиотека:\n" + Book.getCount() + " Привязанные книги : ");
         for (int i = 0; i < this.NumBooks; i++) {
             System.out.println("\"" + this.books.get(i).getName() + "\", автор - " + this.books.get(i).author.getName() + ", год издания - " + this.books.get(i).getYear() + "\n" );
         }
-        System.out.println("\nПривязанные читатели : ");
+        System.out.println("\n" + Client.getCount() + " Привязанных читателей : ");
         for (int i = 0; i < this.NumReaders; i++) {
             System.out.printf("Имя: " + this.clients.get(i).getName() + ", дата рождения:" + this.clients.get(i).getDate() + ", проживает по адресу - " + this.clients.get(i).getAddress() + "\n");
         }
-        System.out.println("\nОперации в библиотеке : ");
+        System.out.println("\n" + Operation.getCount() + " Привязанных операции в библиотеке : ");
         for (int i = 0; i < this.NumOperations; i++) {
             System.out.printf("Книга \"" + this.operations.get(i).book.getName() + "\", читатель: " + this.operations.get(i).client.getName() + ", Дата совершения операции: " + this.operations.get(i).getDate() + ", Тип операции: " + this.operations.get(i).getMove() + "\n");
         }

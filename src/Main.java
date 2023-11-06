@@ -37,15 +37,17 @@ public class Main {
                     library.PrintLibrary();
                     break;
                 case 3:
-                    Book NewBook1 = new Book();
-                    Author NewAuthor1 = new Author();
-                    NewAuthor1.input();
-                    NewBook1.input(NewAuthor1);
-                    Client NewClient1 = new Client();
-                    NewClient1.input();
+                    Book NewBook2 = new Book();
+                    Author NewAuthor2 = new Author();
+                    NewAuthor2.input();
+                    NewBook2.input(NewAuthor2);
+                    Client NewClient2 = new Client();
+                    NewClient2.input();
                     Operation NewOperation = new Operation();
-                    NewOperation.input(NewBook1, NewClient1);
-                    library.AddOperationToLibrary(operation);
+                    NewOperation.input(NewBook2, NewClient2);
+                    library.AddBookToLibrary(NewBook2);
+                    library.AddClientToLibrary(NewClient2);
+                    library.AddOperationToLibrary(NewOperation);
                     library.PrintLibrary();
                     break;
                 case 4:

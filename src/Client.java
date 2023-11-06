@@ -3,18 +3,22 @@ import java.util.Scanner;
 import static java.lang.System.exit;
 
 public class Client {
-    final int Len = 30;
-    final int LenDate = 11;
+    static final int Len = 30;
+    static final int LenDate = 11;
+    private static int nClients = 0;
+    public static int getCount() {
+        return nClients;
+    }
     private String name;
     private String date;
     private String address;
-    public Client(){}
-    public Client(String name) {
+    public Client(){nClients++;}
+    public Client(String name) {nClients++;
         this.name = name;
         this.date = "11.11.1911\0";
         this.address = "Россия\0";
     }
-    public Client(String name, String date, String address) {
+    public Client(String name, String date, String address) {nClients++;
         setArguments(name, date, address);
     }
 
