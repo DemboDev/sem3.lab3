@@ -17,10 +17,10 @@ public class Main {
         do {
             library.PrintLibrary();
             System.out.println("Библиотека создана. . .");
-            System.out.println("Хотите добавить элемент в библиотеку?\n1) Добавить Книгу\n2) Добавить читателя\n3) Добавить операцию\n4) Выйти из программы\n");
+            System.out.println("Хотите добавить элемент в библиотеку?\n1) Добавить неиспользованную Книгу\n2) Добавить читателя\n3) Добавить операцию\n4) Рассчитать коэффициент полезности библиотеки\n5) Выйти из программы\n");
             do {
                 n = sc.nextInt();
-            } while (n > 4 || n < 1);
+            } while (n > 5 || n < 1);
             switch (n) {
                 case 1:
                     Book NewBook = new Book();
@@ -51,6 +51,8 @@ public class Main {
                     library.PrintLibrary();
                     break;
                 case 4:
+                    System.out.println("Эффективность библиотеки составляет " + HelpClass.KEffectiveness(library));
+                case 5:
                     exit = 1;
                     break;
             }
