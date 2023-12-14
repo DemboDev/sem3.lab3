@@ -22,6 +22,7 @@ public class Client {
         setArguments(name, date, address);
     }
 
+
     public void setArguments(String name, String date, String address) {
         if (name.isEmpty() || date.length() != LenDate - 1 || address.isEmpty()) {
             exit(-1);
