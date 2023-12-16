@@ -10,8 +10,9 @@ public class Book {
     private int year;
     private String name;
     public Author author;
-    public Book(){nBooks++;};
-    public Book(Author author) {nBooks++;
+    public Book(){}
+    public Book(Author author) {
+        nBooks++;
         this.name = "Захар Беляков";
         this.year = 2000;
         this.author = author;
@@ -27,7 +28,8 @@ public class Book {
             this.year = year;
         }
     }
-    public Book(String name, Author author, int year) {nBooks++;
+    public Book(String name, Author author, int year) {
+        nBooks++;
         setArguments(name, author, year);
     }
 
@@ -64,6 +66,7 @@ public class Book {
     }
 
     public void input(Author author){
+        nBooks++;
         int year;
         String name;
 

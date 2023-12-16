@@ -12,9 +12,14 @@ public class Client {
     private String name;
     private String date;
     private String address;
-    public Client(){nClients++;}
-    public Client(String name) {nClients++;
+    public Client(){}
+    public Client(String name) {
         this.name = name;
+        for (int i = 0; i < name.length(); i++) {
+            if (Character.isDigit(name.charAt(i))) {
+                throw new IllegalArgumentException("Неправильный формат данных!");
+            }
+        }
         this.date = "11.11.1911\0";
         this.address = "Россия\0";
     }
@@ -58,6 +63,7 @@ public class Client {
     }
 
     public void input() {
+        nClients++;
         String name, date, address;
 
         Scanner sc = new Scanner(System.in);

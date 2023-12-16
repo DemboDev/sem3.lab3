@@ -9,7 +9,15 @@ public class Library {
     public ArrayList<Operation> operations = new ArrayList<>();
     public ArrayList<Client> clients = new ArrayList<>();
     public int NumBooks = 1;
+
+    int GetNumBooks(){
+        return NumBooks;
+    }
     public int NumReaders = 1;
+
+    int GetNumReaders () {
+        return NumReaders;
+    }
     public int NumOperations = 1;
     public Library(){}
     public Library(Book book, Client client, Operation operation, String address) {
