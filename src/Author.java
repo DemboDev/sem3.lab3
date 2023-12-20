@@ -1,8 +1,7 @@
 import java.util.Scanner;
 
 import static java.lang.System.exit;
-
-public class Author {
+public class Author extends AbstractAuthor<String, String, String> implements FullInput, Printable, Cloneable{
     static final int LenDate = 11;
     static final int Len = 30;
     private String name;
@@ -50,7 +49,7 @@ public class Author {
             setCountry(country);
         }
     }
-    public void printAuthor() { // вывод информации об авторе
+    public void Print() { // вывод информации об авторе
         System.out.println(this.getName());
         System.out.println(this.getCountry());
         System.out.println(this.getDate());
@@ -74,6 +73,18 @@ public class Author {
         System.out.println("Введите страну происхождения автора");
         country = sc.nextLine();
         this.setArguments(name, date,country);
+
+    }
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+    public Author deepClone() throws CloneNotSupportedException {
+        Author clonedAuthor = (Author) super.clone();
+        clonedAuthor.setName(new String(this.name));
+        clonedAuthor.setCountry(new String(this.country));
+        clonedAuthor.setDate(new String(this.date));
+        return clonedAuthor;
     }
 }
 

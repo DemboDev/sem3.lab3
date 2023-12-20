@@ -2,14 +2,14 @@ import java.util.Scanner;
 
 import static java.lang.System.exit;
 
-public class Book {
+public class Book implements Printable, Cloneable{
     private static int nBooks = 0;
     public static int getCount() {
         return nBooks;
     }
-    private int year;
-    private String name;
-    public Author author;
+    protected int year;
+    protected String name;
+    protected Author author;
     public Book(){}
     public Book(Author author) {
         nBooks++;
@@ -64,6 +64,17 @@ public class Book {
         System.out.println(this.author.getName());
         System.out.println(this.author.getDate());
     }
+    // Мелкое клонирование
+    public Book shallowClone() throws CloneNotSupportedException {
+        return (Book) super.clone();
+    }
+
+    // Глубокое клонирование
+    public Book deepClone() throws CloneNotSupportedException {
+        Book clonedBook = (Book) super.clone();
+        clonedBook.setAuthor((Author) clonedBook.getAuthor().clone());
+        return clonedBook;
+    }
 
     public void input(Author author){
         nBooks++;
@@ -82,5 +93,8 @@ public class Book {
         } while (year < 1000);
 
         setArguments(name, author, year);
+    }
+    public void Print() {
+        System.out.println("Название: \"" + this.name + "\", год издания: " + year + ", Автор: " + author.getName() + "\n");
     }
 }

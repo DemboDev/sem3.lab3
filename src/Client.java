@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 import static java.lang.System.exit;
 
-public class Client {
+public class Client implements FullInput{
     static final int Len = 30;
     static final int LenDate = 11;
     private static int nClients = 0;

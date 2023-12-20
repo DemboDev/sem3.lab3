@@ -22,26 +22,53 @@ public class Main {
         Collection collection;
         Book b = new Book();
         do {
-            library.PrintLibrary();
+            library.Print();
             System.out.println("Библиотека создана. . .");
-            System.out.println("Хотите добавить элемент в библиотеку?\n1) Добавить Книгу\n2) Добавить читателя\n3) Добавить операцию\n4) Работа со сборником\n5) Рассчитать эффективность библиотеки\n6) Выйти из программы\n");
+            System.out.println("Хотите добавить элемент в библиотеку?\n1) Добавить Книгу\n2) Добавить читателя\n3) Добавить операцию\n4) Работа со сборником\n5) Рассчитать эффективность библиотеки\n6) Демонстрация клонирования\n7) Выйти из программы\n");
             do {
                 n = sc.nextInt();
-            } while (n > 6 || n < 1);
+            } while (n > 7 || n < 1);
             switch (n) {
                 case 1:
-                    Book NewBook = new Book();
-                    Author NewAuthor = new Author();
-                    NewAuthor.input();
-                    NewBook.input(NewAuthor);
-                    library.AddBookToLibrary(NewBook);
-                    library.PrintLibrary();
+                    System.out.println("1) Добавить книгу \n2) Добавить книгу-сборник\n");
+                    do {
+                        n = sc.nextInt();
+                    } while (n < 1 || n > 2);
+                    if (n == 1) {
+                        Book NewBook = new Book();
+                        Author NewAuthor = new Author();
+                        NewAuthor.input();
+                        NewBook.input(NewAuthor);
+                        library.AddBookToLibrary(NewBook);
+                        library.Print();
+                    }
+                    else {
+                        Author NewAuthor = new Author();
+                        NewAuthor.input();
+                        BookCollection bc = new BookCollection();
+                        bc.input(NewAuthor);
+                        System.out.println("Введите количество рассказов (до 5)");
+                        int k;
+                        do {
+                            k = sc.nextInt();
+                        } while (k < 1 || k > 5);
+                        String str;
+                        for (int i = 0; i < k; i++) {
+                            System.out.println("Введите название рассказа " + (i + 1) + "\n");
+                            do{
+                            str = sc.nextLine();
+                            } while (str.isEmpty());
+                            bc.AddStory(str);
+                        }
+                        library.AddBookCollectionToLibrary(bc);
+                        library.Print();
+                    }
                     break;
                 case 2:
                     Client NewClient = new Client();
                     NewClient.input();
                     library.AddClientToLibrary(NewClient);
-                    library.PrintLibrary();
+                    library.Print();
                     break;
                 case 3:
                     int k;
@@ -50,7 +77,7 @@ public class Main {
                         k = sc.nextInt();
                     } while (k < 1 || k > 2);
                     if (k == 1) {
-                        library.PrintLibrary();
+                        library.Print();
                         System.out.println("Введите номер книги из списка");
                         int nOfBook;
                         do {
@@ -70,7 +97,7 @@ public class Main {
                     } while (k < 1 || k > 2);
                     Client c = new Client();
                     if (k == 1) {
-                        library.PrintLibrary();
+                        library.Print();
                         System.out.println("Введите номер читателя из списка");
                         int nOfReader;
                         do {
@@ -85,7 +112,7 @@ public class Main {
                     Operation op = new Operation();
                     op.input(b, c);
                     library.AddOperationToLibrary(op);
-                    library.PrintLibrary();
+                    library.Print();
                     break;
                 case 4:
                     collection = new Collection();
@@ -103,7 +130,7 @@ public class Main {
                                 num = sc.nextInt();
                                 num -= 1;
                             } while (num < 0 || num > collection.GetNumOfToms());
-                            library.PrintLibrary();
+                            library.Print();
                             System.out.println("Введите номер книги из списка");
                             int nOfBook;
                             do {
@@ -116,9 +143,36 @@ public class Main {
                             collection.Print();
                         }
                     } while (choice != 3);
+                    break;
                 case 5:
                     System.out.println("Эффективность библиотеки составляет " + HelpClass.KEffectiveness(library));
+                    break;
                 case 6:
+                    Author originalAuthor = new Author();
+                    String dynamicName = "Иван";
+                    originalAuthor.setName(dynamicName);
+                    originalAuthor.setCountry("США");
+                    originalAuthor.setDate("01.01.1910");
+                    Book originalBook = new Book();
+                    originalBook.setName("Книга");
+                    originalBook.setYear(1999);
+                    originalBook.setAuthor(originalAuthor);
+
+                    try {
+                        System.out.println("Имя оригинального автора: " + originalBook.author.getName());
+                        System.out.println("Меняем имя автора у оригинальной книги. . .");
+                        Book shallowClonedBook = originalBook.shallowClone();
+                        Book deepClonedBook = originalBook.deepClone();
+                        originalAuthor.setName("Игорь");
+                        originalBook.setAuthor(originalAuthor);
+                        System.out.println("Имя оригинального автора: " + originalBook.author.getName());
+                        System.out.println("Имя клонированного автора (мелкое клонирование): " + shallowClonedBook.author.getName());
+                        System.out.println("Имя клонированного автора (глубокое клонирование): " + deepClonedBook.author.getName());
+                    } catch (CloneNotSupportedException e) {
+                        System.out.println("Ошибка клонирования!");
+                    }
+                    break;
+                case 7:
                     int ans;
                     do{
                     System.out.println("Точно?\n1)Да\n2)Нет");

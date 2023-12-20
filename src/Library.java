@@ -3,11 +3,12 @@ import java.util.Scanner;
 
 import static java.lang.System.exit;
 
-public class Library {
+public class Library implements Printable{
     private String address;
     public ArrayList<Book> books = new ArrayList<>();
     public ArrayList<Operation> operations = new ArrayList<>();
     public ArrayList<Client> clients = new ArrayList<>();
+    public ArrayList <BookCollection> bookCollections = new ArrayList<>();
     public int NumBooks = 1;
 
     int GetNumBooks(){
@@ -60,10 +61,19 @@ public class Library {
         this.NumOperations += 1;
         this.operations.add(operation1);
     }
-    void PrintLibrary() {
+    public void AddBookCollectionToLibrary(BookCollection bookCollection) {
+        this.NumBooks += 1;
+        this.bookCollections.add(bookCollection);
+    }
+    public void Print() {
         System.out.println("\nБиблиотека:\n" + Book.getCount() + " Привязанные книги : ");
-        for (int i = 0; i < this.NumBooks; i++) {
-            System.out.println("\"" + this.books.get(i).getName() + "\", автор - " + this.books.get(i).author.getName() + ", год издания - " + this.books.get(i).getYear() + "\n" );
+        for (int i = 0; i < Book.getCount() - BookCollection.getCountBC(); i++) {
+            System.out.println("\"" + this.books.get(i).getName() + "\", автор - " + this.books.get(i).author.getName() + ", год издания - " + this.books.get(i).getYear());
+        }
+        if (BookCollection.getCountBC() != 0) {
+            for (int i = 0; i < BookCollection.getCountBC(); i++) {
+                this.bookCollections.get(i).Print();
+            }
         }
         System.out.println("\n" + Client.getCount() + " Привязанных читателей : ");
         for (int i = 0; i < this.NumReaders; i++) {
