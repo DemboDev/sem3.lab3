@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
 
 import static java.lang.System.exit;
 
@@ -65,11 +69,36 @@ public class Library implements Printable{
         this.NumBooks += 1;
         this.bookCollections.add(bookCollection);
     }
+    public void sortBooksByYear() {
+        System.out.println("Сортировка книг. . .");
+        books.sort(Comparator.comparingInt(Book::getYear));
+        System.out.println("Сортировка сборников. . .");
+        bookCollections.sort(Comparator.comparingInt(BookCollection::getYear));
+    }
+    public int searchBookByName(String name) {
+        for (Book currentBook : books) {
+            if (currentBook.getName().equals(name)) {
+                System.out.println("Найдена книга с таким названием:");
+                currentBook.Print();;
+                return 1;
+            }
+        }
+        for (BookCollection currentCollection : bookCollections) {
+            if (currentCollection.getName().equals(name)) {
+                System.out.println("Найден сборник с таким названием");
+                currentCollection.Print();
+                return 1;
+            }
+        }
+        System.out.println("Книги с таким названием не существует");
+        return -1;
+    }
     public void Print() {
-        System.out.println("\nБиблиотека:\n" + Book.getCount() + " Привязанные книги : ");
+        System.out.println("\nБиблиотека:\n" + (Book.getCount() - BookCollection.getCountBC()) + " Привязанные книги : ");
         for (int i = 0; i < Book.getCount() - BookCollection.getCountBC(); i++) {
             System.out.println("\"" + this.books.get(i).getName() + "\", автор - " + this.books.get(i).author.getName() + ", год издания - " + this.books.get(i).getYear());
         }
+        System.out.println(BookCollection.getCountBC() + " Привязанные книги-сборники : ");
         if (BookCollection.getCountBC() != 0) {
             for (int i = 0; i < BookCollection.getCountBC(); i++) {
                 this.bookCollections.get(i).Print();

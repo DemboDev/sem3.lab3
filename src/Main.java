@@ -24,10 +24,10 @@ public class Main {
         do {
             library.Print();
             System.out.println("Библиотека создана. . .");
-            System.out.println("Хотите добавить элемент в библиотеку?\n1) Добавить Книгу\n2) Добавить читателя\n3) Добавить операцию\n4) Работа со сборником\n5) Рассчитать эффективность библиотеки\n6) Демонстрация клонирования\n7) Выйти из программы\n");
+            System.out.println("Хотите добавить элемент в библиотеку?\n1) Добавить Книгу\n2) Добавить читателя\n3) Добавить операцию\n4) Работа со сборником\n5) Рассчитать эффективность библиотеки\n6) Демонстрация клонирования\n7) Сортировка книг по году выпуска\n8) Поиск книги по названию\n9) Выйти из программы\n");
             do {
                 n = sc.nextInt();
-            } while (n > 7 || n < 1);
+            } while (n > 9 || n < 1);
             switch (n) {
                 case 1:
                     System.out.println("1) Добавить книгу \n2) Добавить книгу-сборник\n");
@@ -173,6 +173,18 @@ public class Main {
                     }
                     break;
                 case 7:
+                    library.sortBooksByYear();
+                    System.out.println("Сортировка завершена");
+                    break;
+                case 8:
+                    System.out.println("Введите название книги для поиска");
+                    String str;
+                    do {
+                        str = sc.nextLine();
+                    } while (str.isEmpty());
+                    library.searchBookByName(str);
+                    break;
+                case 9:
                     int ans;
                     do{
                     System.out.println("Точно?\n1)Да\n2)Нет");
